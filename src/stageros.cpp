@@ -476,15 +476,15 @@ StageNode::WorldCallback()
                 }
 
                 if (robotmodel->lasermodels.size() > 1)
-                    msg.header.frame_id = mapName("base_laser_link", r, s, static_cast<Stg::Model*>(robotmodel->positionmodel));
+                    msg.header.frame_id = mapName("laser", r, s, static_cast<Stg::Model*>(robotmodel->positionmodel));
                 else
-                    msg.header.frame_id = mapName("base_laser_link", r, static_cast<Stg::Model*>(robotmodel->positionmodel));
+                    msg.header.frame_id = mapName("laser", r, static_cast<Stg::Model*>(robotmodel->positionmodel));
 
                 msg.header.stamp = sim_time;
                 robotmodel->laser_pubs[s].publish(msg);
             }
 
-            // Also publish the base->base_laser_link Tx.  This could eventually move
+            // Also publish the base->laser Tx.  This could eventually move
             // into being retrieved from the param server as a static Tx.
             Stg::Pose lp = lasermodel->GetPose();
             tf::Quaternion laserQ;
@@ -494,11 +494,11 @@ StageNode::WorldCallback()
             if (robotmodel->lasermodels.size() > 1)
                 tf.sendTransform(tf::StampedTransform(txLaser, sim_time,
                                                       mapName("base_link", r, static_cast<Stg::Model*>(robotmodel->positionmodel)),
-                                                      mapName("base_laser_link", r, s, static_cast<Stg::Model*>(robotmodel->positionmodel))));
+                                                      mapName("laser", r, s, static_cast<Stg::Model*>(robotmodel->positionmodel))));
             else
                 tf.sendTransform(tf::StampedTransform(txLaser, sim_time,
                                                       mapName("base_link", r, static_cast<Stg::Model*>(robotmodel->positionmodel)),
-                                                      mapName("base_laser_link", r, static_cast<Stg::Model*>(robotmodel->positionmodel))));
+                                                      mapName("laser", r, static_cast<Stg::Model*>(robotmodel->positionmodel))));
         }
 
         //the position of the robot

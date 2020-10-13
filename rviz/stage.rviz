@@ -54,7 +54,7 @@ Visualization Manager:
       Frames:
         /base_footprint:
           Value: true
-        /base_laser_link:
+        /laser:
           Value: true
         /base_link:
           Value: true
@@ -70,7 +70,7 @@ Visualization Manager:
         /odom:
           /base_footprint:
             /base_link:
-              /base_laser_link:
+              /laser:
                 {}
       Update Interval: 0
       Value: true

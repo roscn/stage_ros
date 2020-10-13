@@ -1,0 +1,44 @@
+include "turtlebot.inc"
+
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 1
+  gui_grid 0
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  laser_return 1
+)
+
+resolution 0.01
+interval_sim 100  # simulation timestep in milliseconds
+
+window
+(
+  size [ 800 800.0 ]
+  center [ 0.0 0.0 ]
+  rotate [ 0.0 0.0 ]
+  scale 60
+)
+
+floorplan
+(
+  name "map"
+  bitmap "../csj_f3.pgm"
+  size [ 44.85 24.6 0.02 ]
+  pose [  0  0 0.0 0.0 ]
+)
+
+# throw in a robot
+turtlebot
+(
+  pose [ -13.0 23.0 0.0 0.0 ]
+  name "turtlebot"
+  color "black"
+)
